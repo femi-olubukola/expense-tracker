@@ -2,6 +2,7 @@ package com.et.expensetracker.service;
 
 import com.et.expensetracker.model.Expense;
 import com.et.expensetracker.repository.ExpenseRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,11 +10,9 @@ import java.util.List;
 @Service
 public class ExpenseService {
 
-    private final ExpenseRepository expenseRepository;
+    @Autowired
+    private ExpenseRepository expenseRepository;
 
-    public ExpenseService(ExpenseRepository expenseRepository) {
-        this.expenseRepository = expenseRepository;
-    }
 
     public void addExpense(Expense expense) {
         expenseRepository.save(expense);
@@ -37,13 +36,13 @@ public class ExpenseService {
     }
 
     public Expense getExpenseByName(String name) {
-        return expenseRepository.findByName(name).
+        return expenseRepository.findExpenseByExpenseName(name).
                 orElseThrow(() -> new RuntimeException(
                         String.format("Cannot find expense by name %s", name)
                 ));
     }
 
-    public void deleteExpense(String id) {
+    public void deleteExpense(Long id) {
         expenseRepository.deleteById(id);
     }
 }

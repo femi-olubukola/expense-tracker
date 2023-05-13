@@ -10,22 +10,22 @@ import java.math.BigDecimal;
 public class Expense {
 
     @Id
-    @SequenceGenerator(
-            name = "expense_sequence",
-            sequenceName = "expense_sequence",
-            allocationSize = 1
-    )
+//    @SequenceGenerator(
+//            name = "expense_sequence",
+//            sequenceName = "expense_sequence",
+//            allocationSize = 1
+//    )
     @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
+            strategy = GenerationType.TABLE,
             generator = "expense_sequence"
     )
-    private String Id;
+    private Long Id;
     @Column(unique = true)
     private String expenseName;
     private ExpenseCategory expenseCategory;
     private BigDecimal expenseAmount;
 
-    public Expense(String id, String expenseName, ExpenseCategory expenseCategory, BigDecimal expenseAmount) {
+    public Expense(Long id, String expenseName, ExpenseCategory expenseCategory, BigDecimal expenseAmount) {
         Id = id;
         this.expenseName = expenseName;
         this.expenseCategory = expenseCategory;
@@ -36,11 +36,11 @@ public class Expense {
 
     }
 
-    public String getId() {
+    public Long getId() {
         return Id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         Id = id;
     }
 
