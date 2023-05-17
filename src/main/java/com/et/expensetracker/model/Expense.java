@@ -22,6 +22,7 @@ public class Expense {
     private Long Id;
     @Column(unique = true)
     private String expenseName;
+    @Enumerated(EnumType.STRING)
     private ExpenseCategory expenseCategory;
     private BigDecimal expenseAmount;
 
