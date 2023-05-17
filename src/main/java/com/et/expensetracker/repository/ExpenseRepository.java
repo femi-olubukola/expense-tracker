@@ -9,6 +9,5 @@ import java.util.Optional;
 @Repository
 public interface ExpenseRepository extends JpaRepository<Expense, Long> {
 
-//    @Query("{'name': ?0 }")
     Optional<Expense> findExpenseByExpenseName(String name);
 }
